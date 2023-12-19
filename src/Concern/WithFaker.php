@@ -6,17 +6,14 @@ namespace Symblaze\TestPack\Concern;
 
 use Faker\Factory;
 use Faker\Generator as Faker;
-use Faker\ORM\Doctrine\Populator;
 
 trait WithFaker
 {
     protected ?Faker $faker = null;
-    protected ?Populator $populator = null;
 
     protected function setUpFaker(): void
     {
         $this->faker = Factory::create();
-        $this->populator = new Populator($this->faker);
     }
 
     protected function tearDownFaker(): void
@@ -31,14 +28,5 @@ trait WithFaker
         }
 
         return $this->faker;
-    }
-
-    protected function populator(): Populator
-    {
-        if ($this->populator === null) {
-            $this->setUpFaker();
-        }
-
-        return $this->populator;
     }
 }
