@@ -17,15 +17,16 @@ use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
  */
 trait WebTestTrait
 {
+    use KernelTestTrait;
     use WebTestAssertionsTrait;
 
     /**
      * This is only changed method from original WebTestCase.
      * It is renamed to work with the TestCase class that invoke all template methods.
+     * The call to parent::tearDown() to avoid infinite loop.
      */
     protected function tearDownWebTest(): void
     {
-        parent::tearDown();
         self::getClient(null);
     }
 
