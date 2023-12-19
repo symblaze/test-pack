@@ -19,4 +19,13 @@ final class TestCaseTest extends TestCase
         $this->assertTrue($this->invokedL1Setup);
         $this->assertTrue($this->invokedL2Setup);
     }
+
+    /** @test */
+    public function it_should_invoke_teardown_template_methods_only_once(): void
+    {
+        $this->tearDown();
+
+        $this->assertTrue($this->invokedL1TearDown);
+        $this->assertTrue($this->invokedL2TearDown);
+    }
 }

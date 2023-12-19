@@ -10,8 +10,15 @@ trait SecondLevelTrait
 
     public bool $invokedL2Setup = false;
 
+    public bool $invokedL2TearDown = false;
+
     protected function setUpL2(): void
     {
         $this->invokedL2Setup = ! $this->invokedL2Setup;
+    }
+
+    protected function tearDownL2(): void
+    {
+        $this->invokedL2TearDown = ! $this->invokedL2TearDown;
     }
 }
