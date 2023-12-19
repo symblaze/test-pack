@@ -28,14 +28,19 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     private function invokeTemplateMethods(string $prefix): void
     {
         $traits = $this->usedTraits(static::class);
+        $called = [];
 
         foreach ($traits as $trait) {
             $reflection = new ReflectionClass($trait);
             $methods = $reflection->getMethods();
 
             foreach ($methods as $method) {
-                if ($method->name !== $prefix && str_starts_with($method->name, $prefix)) {
+                if ($method->name !== $prefix &&
+                    str_starts_with($method->name, $prefix) &&
+                    ! in_array($method->name, $called, true)
+                ) {
                     $this->{$method->name}();
+                    $called[] = $method->name;
                 }
             }
         }
