@@ -6,6 +6,7 @@ namespace Symblaze\TestPack\Concern;
 
 use Faker\Factory;
 use Faker\Generator as Faker;
+use RuntimeException;
 
 trait WithFaker
 {
@@ -13,6 +14,12 @@ trait WithFaker
 
     protected function setUpFaker(): void
     {
+        if (! class_exists(Factory::class)) {
+            throw new RuntimeException(
+                'Faker library is not installed. Please run: composer require --dev fakerphp/faker'
+            );
+        }
+
         $this->faker = Factory::create();
     }
 
