@@ -94,6 +94,12 @@ class PostControllerTest extends TestCase
 }
 ```
 
+### Helper Traits
+
+Symblaze Test Pack provides some helper traits:
+
+- `WithFaker` - Provides a `Faker\Generator` instance through the `faker()` method.
+
 ## License
 
 This package is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
