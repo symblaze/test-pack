@@ -9,18 +9,19 @@ use Symblaze\TestPack\TestCase;
 use Symblaze\TestPack\Tests\Doubles\FirstLevelTrait;
 use Symblaze\TestPack\Tests\Doubles\Kernel;
 use Symblaze\TestPack\Tests\Doubles\SecondLevelTrait;
+use Symblaze\TestPack\WebTestTrait;
 
 final class TestCaseTest extends TestCase
 {
     use FirstLeveLTrait;
     use SecondLeveLTrait;
     use KernelTestTrait;
-
+    use WebTestTrait;
 
     protected function setUp(): void
     {
         $_ENV['KERNEL_CLASS'] = Kernel::class;
-        
+
         parent::setUp();
     }
 
