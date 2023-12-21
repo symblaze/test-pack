@@ -6,6 +6,8 @@ namespace Symblaze\TestPack;
 
 use LogicException;
 use RuntimeException;
+use Symblaze\TestPack\Assert\Database\OdmAssertTrait;
+use Symblaze\TestPack\Assert\Database\OrmAssertTrait;
 use Symfony\Bundle\FrameworkBundle\Test\MailerAssertionsTrait;
 use Symfony\Bundle\FrameworkBundle\Test\NotificationAssertionsTrait;
 use Symfony\Component\DependencyInjection\Container;
@@ -22,6 +24,13 @@ trait KernelTestTrait
 {
     use MailerAssertionsTrait;
     use NotificationAssertionsTrait;
+
+    ### > Symblaze Traits ###
+
+    use OrmAssertTrait;
+    use OdmAssertTrait;
+
+    ### < Symblaze Traits ###
 
     protected static ?string $class = null;
     protected static ?KernelInterface $kernel = null;
@@ -140,5 +149,10 @@ trait KernelTestTrait
                 $container->reset();
             }
         }
+    }
+
+    protected function container(): Container
+    {
+        return self::getContainer();
     }
 }
