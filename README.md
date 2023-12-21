@@ -101,6 +101,8 @@ Symblaze Test Pack provides some helper traits:
 - `WithFaker` - Provides a `Faker\Generator` instance through the `faker()` method.
 - `WithOdmPopulator` - Provides a faker populator for Doctrine ODM through the `populator()` method.
 - `WithOrmPopulator` - Provides a faker populator for Doctrine ORM through the `populator()` method.
+- `WithCommandTester` - Provides a `console()` method that executes a Symfony console command and returns
+  a `CommandTester` instance.
 
 ### Assertions
 
