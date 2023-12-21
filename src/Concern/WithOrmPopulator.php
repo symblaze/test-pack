@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Symblaze\TestPack\Concern;
 
+use Doctrine\ORM\EntityManager;
 use Faker\ORM\Doctrine\Populator;
 use Symblaze\TestPack\KernelTestTrait;
 
@@ -16,8 +17,7 @@ trait WithOrmPopulator
 
     protected function setUpPopulator(): void
     {
-        $container = self::getContainer();
-        $em = $container->get('doctrine.orm.entity_manager');
+        $em = $this->container()->get(EntityManager::class);
         $this->populator = new Populator($this->faker(), $em);
     }
 

@@ -102,6 +102,19 @@ Symblaze Test Pack provides some helper traits:
 - `WithOdmPopulator` - Provides a faker populator for Doctrine ODM through the `populator()` method.
 - `WithOrmPopulator` - Provides a faker populator for Doctrine ORM through the `populator()` method.
 
+### Assertions
+
+#### Database Assertions
+
+Database asserts are available through the `KernelTestTrait` trait.
+
+| Method                                                                 | Description                                             |
+|------------------------------------------------------------------------|---------------------------------------------------------|
+| `assertDocumentExists(string $documentClass, array $criteria = [])`    | Asserts that a document exists in the database.         |
+| `assertDocumentNotExists(string $documentClass, array $criteria = [])` | Asserts that a document does not exist in the database. |
+| `assertEntityExists(string $entityClass, array $criteria = [])`        | Asserts that an entity exists in the database.          |
+| `assertEntityNotExists(string $entityClass, array $criteria = [])`     | Asserts that an entity does not exist in the database.  |
+
 ## License
 
 This package is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
