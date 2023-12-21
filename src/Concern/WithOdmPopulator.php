@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Symblaze\TestPack\Concern;
 
+use Doctrine\ODM\MongoDB\DocumentManager;
 use Faker\ORM\Doctrine\Populator;
 use Symblaze\TestPack\KernelTestTrait;
 
@@ -16,8 +17,7 @@ trait WithOdmPopulator
 
     protected function setUpPopulator(): void
     {
-        $container = self::getContainer();
-        $dm = $container->get('doctrine_mongodb.odm.document_manager');
+        $dm = $this->container()->get(DocumentManager::class);
         $this->populator = new Populator($this->faker(), $dm);
     }
 
