@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Symblaze\TestPack\Concern;
 
+use Symblaze\TestPack\Assert\Console\ExitCodeAssertTrait;
+use Symblaze\TestPack\Assert\Console\OutputAssertTrait;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -13,13 +15,18 @@ use Symfony\Component\Console\Tester\CommandTester;
  */
 trait WithCommandTester
 {
+    use ExitCodeAssertTrait;
+    use OutputAssertTrait;
+
+    protected CommandTester $commandTester;
+
     protected function console(string $command, array $arguments = [], ?Application $application = null): CommandTester
     {
         $application = $application ?? $this->consoleApp();
-        $commandTester = new CommandTester($application->find($command));
-        $commandTester->execute($arguments);
+        $this->commandTester = new CommandTester($application->find($command));
+        $this->commandTester->execute($arguments);
 
-        return $commandTester;
+        return $this->commandTester;
     }
 
     protected function consoleApp(array $options = []): Application
