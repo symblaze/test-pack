@@ -106,16 +106,24 @@ Symblaze Test Pack provides some helper traits:
 
 ### Assertions
 
-#### Database Assertions
+#### Database Assertions (ODM)
 
 Database asserts are available through the `KernelTestTrait` trait.
 
-| Method                                                                 | Description                                             |
-|------------------------------------------------------------------------|---------------------------------------------------------|
-| `assertDocumentExists(string $documentClass, array $criteria = [])`    | Asserts that a document exists in the database.         |
-| `assertDocumentNotExists(string $documentClass, array $criteria = [])` | Asserts that a document does not exist in the database. |
-| `assertEntityExists(string $entityClass, array $criteria = [])`        | Asserts that an entity exists in the database.          |
-| `assertEntityNotExists(string $entityClass, array $criteria = [])`     | Asserts that an entity does not exist in the database.  |
+| Method                    | Description                                             |
+|---------------------------|---------------------------------------------------------|
+| `assertDocumentExists`    | Asserts that a document exists in the database.         |
+| `assertDocumentNotExists` | Asserts that a document does not exist in the database. |
+| `assertDocumentCount`     | Asserts the number of documents in the database.        |
+
+#### Database Assertions (ORM)
+
+Database asserts are available through the `KernelTestTrait` trait.
+
+| Method                  | Description                                            |
+|-------------------------|--------------------------------------------------------|
+| `assertEntityExists`    | Asserts that an entity exists in the database.         |
+| `assertEntityNotExists` | Asserts that an entity does not exist in the database. |
 
 #### Console Assertions
 
