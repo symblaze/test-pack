@@ -24,4 +24,14 @@ trait OdmAssertTrait
         $document = $this->dm()->getRepository($documentClass)->findOneBy($criteria);
         $this->assertNull($document, $message ?: "Failed asserting that document not exists.");
     }
+
+    protected function assertDocumentCount(
+        string $documentClass,
+        int $expectedCount,
+        array $criteria = [],
+        ?string $message = null
+    ): void {
+        $results = $this->dm()->getRepository($documentClass)->findBy($criteria);
+        $this->assertCount($expectedCount, $results, $message ?: "Failed asserting that document count is correct.");
+    }
 }
