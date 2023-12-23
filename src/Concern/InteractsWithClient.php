@@ -21,6 +21,11 @@ trait InteractsWithClient
         return self::getClient();
     }
 
+    protected function actAs(object $user, string $firewallContext = 'main'): void
+    {
+        $this->client()->loginUser($user, $firewallContext);
+    }
+
     protected function request(string $method, string $uri, array $data = [], array $headers = []): void
     {
         $files = $this->extractFilesFromDataArray($data);
