@@ -70,4 +70,89 @@ trait InteractsWithClient
 
         return $files;
     }
+
+    protected function get(string $uri, array $headers = []): void
+    {
+        $this->request('GET', $uri, [], $headers);
+    }
+
+    protected function post(string $uri, array $data = [], array $headers = []): void
+    {
+        $this->request('POST', $uri, $data, $headers);
+    }
+
+    protected function put(string $uri, array $data = [], array $headers = []): void
+    {
+        $this->request('PUT', $uri, $data, $headers);
+    }
+
+    protected function patch(string $uri, array $data = [], array $headers = []): void
+    {
+        $this->request('PATCH', $uri, $data, $headers);
+    }
+
+    protected function delete(string $uri, array $headers = []): void
+    {
+        $this->request('DELETE', $uri, [], $headers);
+    }
+
+    protected function options(string $uri, array $headers = []): void
+    {
+        $this->request('OPTIONS', $uri, [], $headers);
+    }
+
+    protected function head(string $uri, array $headers = []): void
+    {
+        $this->request('HEAD', $uri, [], $headers);
+    }
+
+    protected function getJson(string $uri, array $headers = []): void
+    {
+        $this->json('GET', $uri, [], $headers);
+    }
+
+    protected function postJson(
+        string $uri,
+        array $data = [],
+        array $headers = [],
+        int $options = JSON_THROW_ON_ERROR
+    ): void {
+        $this->json('POST', $uri, $data, $headers, $options);
+    }
+
+    protected function putJson(
+        string $uri,
+        array $data = [],
+        array $headers = [],
+        int $options = JSON_THROW_ON_ERROR
+    ): void {
+        $this->json('PUT', $uri, $data, $headers, $options);
+    }
+
+    protected function patchJson(
+        string $uri,
+        array $data = [],
+        array $headers = [],
+        int $options = JSON_THROW_ON_ERROR
+    ): void {
+        $this->json('PATCH', $uri, $data, $headers, $options);
+    }
+
+    protected function deleteJson(
+        string $uri,
+        array $data = [],
+        array $headers = [],
+        int $options = JSON_THROW_ON_ERROR
+    ): void {
+        $this->json('DELETE', $uri, $data, $headers, $options);
+    }
+
+    protected function optionsJson(
+        string $uri,
+        array $data = [],
+        array $headers = [],
+        int $options = JSON_THROW_ON_ERROR
+    ): void {
+        $this->json('OPTIONS', $uri, $data, $headers, $options);
+    }
 }
