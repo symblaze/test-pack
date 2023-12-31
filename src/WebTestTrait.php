@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Symblaze\TestPack;
 
 use LogicException;
+use Symblaze\TestPack\Assert\Response\ResponseAssertTrait;
 use Symblaze\TestPack\Concern\InteractsWithClient;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -24,12 +25,13 @@ trait WebTestTrait
     ### > Symblaze Traits ###
 
     use InteractsWithClient;
+    use ResponseAssertTrait;
 
     ### < Symblaze Traits ###
-    
+
     /**
-     * This is one of the changed method from original WebTestCase.
-     * It is renamed to work with the TestCase class that invoke all template methods.
+     * This is one of the changed methods from original WebTestCase.
+     * It is renamed to work with the TestCase class that invokes all template methods.
      * The call to parent::tearDown() to avoid infinite loop.
      */
     protected function tearDownWebTest(): void

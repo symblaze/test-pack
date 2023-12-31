@@ -6,6 +6,7 @@ namespace Symblaze\TestPack\Concern;
 
 use Symfony\Component\BrowserKit\AbstractBrowser;
 use Symfony\Component\HttpFoundation\File\UploadedFile as SymfonyUploadedFile;
+use Symfony\Component\HttpFoundation\Response;
 
 trait InteractsWithClient
 {
@@ -16,9 +17,9 @@ trait InteractsWithClient
         self::createClient($options, $server);
     }
 
-    protected function client(): AbstractBrowser
+    protected function client(AbstractBrowser $newClient = null): AbstractBrowser
     {
-        return self::getClient();
+        return self::getClient($newClient);
     }
 
     protected function actAs(object $user, string $firewallContext = 'main'): self
@@ -156,5 +157,10 @@ trait InteractsWithClient
         int $options = JSON_THROW_ON_ERROR
     ): void {
         $this->json('OPTIONS', $uri, $data, $headers, $options);
+    }
+
+    protected function response(): Response
+    {
+        return self::getResponse();
     }
 }

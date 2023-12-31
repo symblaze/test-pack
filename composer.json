@@ -2,6 +2,7 @@
   "name": "symblaze/test-pack",
   "description": "Symblaze test pack",
   "require": {
+    "opis/json-schema": "^2.3",
     "symfony/test-pack": "^1.1"
   },
   "require-dev": {
