@@ -36,8 +36,13 @@ trait KernelTestTrait
     protected static ?KernelInterface $kernel = null;
     protected static bool $booted = false;
 
+    protected function setUpKernel(array $options = []): void
+    {
+        static::bootKernel($options);
+    }
+
     /**
-     * This is only changed method from original KernelTestCase.
+     * This one of the changed method from original KernelTestCase.
      * It is renamed to work with the TestCase class that invoke all template methods.
      */
     protected function tearDownKernel(): void
