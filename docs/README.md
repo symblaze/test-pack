@@ -1,6 +1,6 @@
 # Getting Started
 
-Symfony testings provides [three different ways](https://symfony.com/doc/current/testing.html#types-of-tests) to test
+Symfony testing provides [three different ways](https://symfony.com/doc/current/testing.html#types-of-tests) to test
 your application depending on what you want to test. Unit tests, integration tests and application tests.
 
 Symblaze Test Pack does not change this functionality, but it provides a better way to organize your tests, make them
@@ -206,7 +206,7 @@ There are many assertions you can use to assert the response. Find more about th
 the [Assertions](assertions/response.md)
 
 All HTTP methods are supported, `get`, `getJson`, `post`, `postJson`, `put`, `putJson`, and so on. The JSON methods are
-meant to send a JSON request body that are most commonly used in REST APIs.
+meant to send a JSON request body most commonly used in REST APIs.
 
 #### Authenticate Requests
 
