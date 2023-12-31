@@ -163,4 +163,53 @@ trait InteractsWithClient
     {
         return self::getResponse();
     }
+
+    protected function getResponseDataByPath(string $path): mixed
+    {
+        $content = $this->response()->getContent();
+        $data = json_decode($content, true, 512, JSON_THROW_ON_ERROR);
+        $keys = explode('.', $path);
+
+        foreach ($keys as $key) {
+            if (is_array($data)) {
+                if ($this->isIndexKey($key)) {
+                    [$name, $index] = $this->parseIndexKey($key);
+                    if (! $this->isValidIndexKey($name, $index, $data)) {
+                        return null;
+                    }
+                    $data = $data[$name][$index];
+                } elseif ($this->isAssociativeKey($key, $data)) {
+                    $data = $data[$key];
+                } else {
+                    return null;
+                }
+            } else {
+                return null;
+            }
+        }
+
+        return $data;
+    }
+
+    private function isIndexKey(string $key): bool
+    {
+        return 1 === preg_match('/^\w+\.\d+$/', $key);
+    }
+
+    private function isAssociativeKey(string $key, array $data): bool
+    {
+        return array_key_exists($key, $data);
+    }
+
+    private function isValidIndexKey(string $name, int $index, array $data): bool
+    {
+        return array_key_exists($name, $data) && is_array($data[$name]) && array_key_exists($index, $data[$name]);
+    }
+
+    private function parseIndexKey(string $key): array
+    {
+        [$name, $index] = explode('.', $key);
+
+        return [$name, (int)$index];
+    }
 }
