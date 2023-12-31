@@ -17,9 +17,9 @@ trait InteractsWithClient
         self::createClient($options, $server);
     }
 
-    protected function client(AbstractBrowser $newClient = null): AbstractBrowser
+    protected function client(): AbstractBrowser
     {
-        return self::getClient($newClient);
+        return self::getClient();
     }
 
     protected function actAs(object $user, string $firewallContext = 'main'): self
