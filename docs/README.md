@@ -202,8 +202,9 @@ final class LoginByEmailTest extends TestCase
 }
 ```
 
-There are many assertions you can use to assert the response. Find more about them in
-the [Assertions](assertions/response.md)
+> [!NOTE]
+> There are many assertions you can use to assert the response.Find more about them in
+> the [Assertions](assertions/response.md)
 
 All HTTP methods are supported, `get`, `getJson`, `post`, `postJson`, `put`, `putJson`, and so on. The JSON methods are
 meant to send a JSON request body most commonly used in REST APIs.
