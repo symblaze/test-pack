@@ -164,10 +164,15 @@ trait InteractsWithClient
         return self::getResponse();
     }
 
-    protected function getResponseDataByPath(string $path): mixed
+    protected function getResponseData(string $path = ''): mixed
     {
         $content = $this->response()->getContent();
         $data = json_decode($content, true, 512, JSON_THROW_ON_ERROR);
+
+        if (empty($path)) {
+            return $data;
+        }
+
         $keys = explode('.', $path);
 
         foreach ($keys as $key) {
