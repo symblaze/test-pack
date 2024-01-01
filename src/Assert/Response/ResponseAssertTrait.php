@@ -6,6 +6,7 @@ namespace Symblaze\TestPack\Assert\Response;
 
 use Opis\JsonSchema\Errors\ErrorFormatter;
 use Opis\JsonSchema\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 trait ResponseAssertTrait
 {
@@ -29,5 +30,25 @@ trait ResponseAssertTrait
         }
 
         self::assertTrue($isValid, $message);
+    }
+
+    protected function assertResponseIsOk(string $message = ''): void
+    {
+        self::assertResponseStatusCodeSame(Response::HTTP_OK, $message);
+    }
+
+    protected function assertResponseIsCreated(string $message = ''): void
+    {
+        self::assertResponseStatusCodeSame(Response::HTTP_CREATED, $message);
+    }
+
+    protected function assertResponseIsUnAuthorized(string $message = ''): void
+    {
+        self::assertResponseStatusCodeSame(Response::HTTP_UNAUTHORIZED, $message);
+    }
+
+    protected function assertResponseIsBadRequest(string $message = ''): void
+    {
+        self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST, $message);
     }
 }
